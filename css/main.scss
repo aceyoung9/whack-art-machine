@@ -1,3 +1,11 @@
 @import "base.css";
 @import "skeleton.css";
 @import "layout.css";
+
+body {
+  background-color: #eee;
+}
+
+canvas#myCanvas {
+  background-color: #FFF;
+}
