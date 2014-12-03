@@ -95,13 +95,22 @@ function megaHexagon (canvas, len, x, y) {
 function draw() {
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
-    var triLENGTH = 50;
-    var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
-    var len = triLENGTH;
     
-    megaHexagon(ctx, triLENGTH, width/2, height/2);
+
+    for (var i = 0; i < 6; i++) {
+      var triLENGTH = (width/6)/4;
+      var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
+      megaHexagon(ctx, triLENGTH, i * 3 * width/6/2 + triLENGTH, height/2);
+    }
 
   }
 }
-
 draw();
+
+function genNew() {
+  if (canvas.getContext){
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, width, height);
+  }
+  draw();
+}
