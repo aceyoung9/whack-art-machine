@@ -20,9 +20,15 @@ function triangle(canvas,len,x,y) {
   canvas.fill();
 }
 
-function tri2(canvas,len,x,y) {
+function downTriangle(canvas,len,x,y) {
   canvas.beginPath();
-  canvas.moveTo()
+  canvas.moveTo(x,y);
+  canvas.lineTo(x + len, y);
+  canvas.lineTo(x + len/2, y + (len * (Math.sqrt(3)/2)));
+  canvas.fillStyle = "rgb("+ getRandomInt(0, 200) 
+    + ", " + getRandomInt(190, 220)
+    + "," + getRandomInt(190, 220) + ")";
+  canvas.fill();
 }
 
 function draw() {
@@ -32,12 +38,12 @@ function draw() {
     var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
     var len = triLENGTH;
     
-    triangle(ctx, triLENGTH, width/2, height/2);
-
-    //ctx.translate(-triLENGTH,0);
-
-    triangle(ctx, triLENGTH, 200, 200);
-
+        triangle(ctx, triLENGTH, width/2, height/2);
+        triangle(ctx, triLENGTH, width/2 - triLENGTH, height/2);
+        triangle(ctx, triLENGTH, width/2 - triLENGTH/2, height/2+triHEIGHT);
+    downTriangle(ctx, triLENGTH, width/2, height/2);
+    downTriangle(ctx, triLENGTH, width/2 - triLENGTH, height/2);
+    downTriangle(ctx, triLENGTH, width/2 - triLENGTH/2, height/2-triHEIGHT);
 
   }
 }
