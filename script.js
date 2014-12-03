@@ -203,5 +203,11 @@ function shadowy() {
   }
 }
 
-
 genNew();
+
+var button = document.getElementById('btn-download');
+button.addEventListener('click', function (e) {
+    var dataURL = myCanvas.toDataURL('image/png');
+    button.href = dataURL;
+});
+
