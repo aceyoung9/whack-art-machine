@@ -12,12 +12,27 @@ var canvas = document.getElementById('myCanvas');
 var width = myCanvas.width;
 var height = myCanvas.height;
 
+var spectrum = ["rgba(191,208,0,",
+  "rgba(0,170,170,",
+  "rgba(255,138,0,",
+    "rgba(254,67,101,"
+
+];
+
+var background = ["Gainsboro", "#FFFF33", "AntiqueWhite", "DarkTurquoise"];
+
+function getRandomArrayMember(array) {
+  return array[getRandomInt(0, array.length)];
+}
+
 function getLight() {
-  return "rgba(0,170,170," + getRandomArbitrary(.1, .333) + ")";
+  var selectedLight = getRandomArrayMember(spectrum);
+  return selectedLight + getRandomArbitrary(0, .25) + ")";
 }
 
 function getDark() {
-  return "rgba(0,180,180," + getRandomArbitrary(.5, 1) + ")";
+  var selectedColor = getRandomArrayMember(spectrum);
+  return selectedColor + getRandomArbitrary(.5, 1) + ")";
 }
 
 function triangle(canvas,len,x,y) {
@@ -96,21 +111,32 @@ function draw() {
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
     
+    var triLENGTH = (width/6)/4;
+    var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
 
-    for (var i = 0; i < 6; i++) {
-      var triLENGTH = (width/6)/4;
-      var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
-      megaHexagon(ctx, triLENGTH, i * 3 * width/6/2 + triLENGTH, height/2);
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + triLENGTH, i * triHEIGHT * 4 + triHEIGHT);
+      }
     }
 
+    for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + 4*triLENGTH, i * triHEIGHT * 4 - triHEIGHT);
+      }
+    }
   }
 }
-draw();
 
 function genNew() {
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
+    ctx.fillStyle = getRandomArrayMember(background);
     ctx.clearRect(0, 0, width, height);
+    ctx.fillRect(0, 0, width, height);
+
   }
   draw();
 }
+
+genNew();
