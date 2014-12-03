@@ -20,12 +20,25 @@ function triangle(canvas,len,x,y) {
   canvas.fill();
 }
 
+function tri2(canvas,len,x,y) {
+  canvas.beginPath();
+  canvas.moveTo()
+}
+
 function draw() {
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
-    //triangle(ctx, 300);
-    //triangle(ctx, 200, 0, 200);
-    triangle(ctx, 100, width/2, height/2);
+    var triLENGTH = 100;
+    var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
+    var len = triLENGTH;
+    
+    triangle(ctx, triLENGTH, width/2, height/2);
+
+    //ctx.translate(-triLENGTH,0);
+
+    triangle(ctx, triLENGTH, 200, 200);
+
+
   }
 }
 
