@@ -8,15 +8,12 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-var canvas = document.getElementById('myCanvas');
-var width = myCanvas.width;
-var height = myCanvas.height;
-
 var spectrum = ["rgba(191,208,0,",
   "rgba(0,170,170,",
   "rgba(255,138,0,",
-    "rgba(254,67,101,"
-
+  "rgba(254,67,101,",
+  "rgba(93,224,220,",
+  "rgba(221,233,229,"
 ];
 
 var background = ["Gainsboro", "#FFFF33", "AntiqueWhite", "DarkTurquoise"];
@@ -70,6 +67,8 @@ function hexagon (canvas, len, x, y) {
 
 function megaHexagon (canvas, len, x, y) {
   var hei = (len * Math.sqrt(3)/2);
+
+
   hexagon(canvas, len, x, y);
   canvas.fillStyle = getLight();
   triangle(canvas, len, x - len/2, y - hei); //top
@@ -108,9 +107,12 @@ function megaHexagon (canvas, len, x, y) {
 }
 
 function draw() {
+  var canvas = document.getElementById('myCanvas');
+  var width = myCanvas.width;
+  var height = myCanvas.height;
+
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
-    
     var triLENGTH = (width/6)/4;
     var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
 
@@ -129,6 +131,10 @@ function draw() {
 }
 
 function genNew() {
+  var canvas = document.getElementById('myCanvas');
+  var width = myCanvas.width;
+  var height = myCanvas.height;
+
   if (canvas.getContext){
     var ctx = canvas.getContext('2d');
     ctx.fillStyle = getRandomArrayMember(background);
@@ -138,5 +144,64 @@ function genNew() {
   }
   draw();
 }
+
+function darken() {
+  var canvas = document.getElementById('myCanvas');
+  var width = myCanvas.width;
+  var height = myCanvas.height;
+
+  if (canvas.getContext){
+    var ctx = canvas.getContext('2d');
+    var triLENGTH = (width/6)/4;
+    var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
+
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + triLENGTH, i * triHEIGHT * 4 + triHEIGHT);
+      }
+    }
+
+    for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + 4*triLENGTH, i * triHEIGHT * 4 - triHEIGHT);
+      }
+    }
+  }
+}
+
+function shadowy() {
+
+  var canvas = document.getElementById('myCanvas');
+  var width = myCanvas.width;
+  var height = myCanvas.height;
+
+  if (canvas.getContext){
+    var ctx = canvas.getContext('2d');
+    var triLENGTH = (width/6)/4;
+    var triHEIGHT = triLENGTH * Math.sqrt(3)/2;
+
+    ctx.fillStyle = getRandomArrayMember(background);
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.shadowOffsetX = getRandomInt(0, 5);
+    ctx.shadowOffsetY = getRandomInt(0, 7);
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "LightSlateGrey"; 
+
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + triLENGTH, i * triHEIGHT * 4 + triHEIGHT);
+      }
+    }
+
+    for (var i = 0; i < 6; i++) {
+      for (var j = 0; j < 6; j++) {
+        megaHexagon(ctx, triLENGTH, j * width/4 + 4*triLENGTH, i * triHEIGHT * 4 - triHEIGHT);
+      }
+    }
+  }
+}
+
 
 genNew();
