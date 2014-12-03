@@ -13,10 +13,11 @@ var spectrum = ["rgba(191,208,0,",
   "rgba(255,138,0,",
   "rgba(254,67,101,",
   "rgba(93,224,220,",
-  "rgba(221,233,229,"
+  //"rgba(114,243,210,",
+  "rgba(67,81,119,"
 ];
 
-var background = ["Gainsboro", "#FFFF33", "AntiqueWhite", "DarkTurquoise"];
+var background = ["Gainsboro", "#FFFF33", "AntiqueWhite", "DarkTurquoise", "LightSlateGrey"];
 
 function getRandomArrayMember(array) {
   return array[getRandomInt(0, array.length)];
@@ -24,12 +25,12 @@ function getRandomArrayMember(array) {
 
 function getLight() {
   var selectedLight = getRandomArrayMember(spectrum);
-  return selectedLight + getRandomArbitrary(0, .25) + ")";
+  return selectedLight + getRandomArbitrary(0, .333) + ")";
 }
 
 function getDark() {
   var selectedColor = getRandomArrayMember(spectrum);
-  return selectedColor + getRandomArbitrary(.5, 1) + ")";
+  return selectedColor + getRandomArbitrary(.666, 1) + ")";
 }
 
 function triangle(canvas,len,x,y) {

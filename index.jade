@@ -1,18 +1,22 @@
+h1 Geometric Pattern Generater
+
 canvas(id="myCanvas"
   width="960px"
   height="600px")
 
-input(type="button"
-  value="Generate New"
-  onClick="genNew();")
-p
+.six.columns.offset-by-five
   input(type="button"
-    value="Darken"
-    onClick="darken();")
+        value="Generate New"
+        onClick="genNew();"
+        class="full-width")
 
-  input(type="button"
-    value="Add Shadows"
-    onClick="shadowy();")
+  .row
+    input(type="button"
+      value="Darken"
+      onClick="darken();")
+    input(type="button"
+      value="Remix and Add Shadows"
+      onClick="shadowy();")
 
-p
-  a#btn-download.button(href='#', download='exported-art.png') Download PNG
+.six.columns.offset-by-five
+  a#btn-download.button.full-width(href='#', download='exported-art.png') Download PNG
